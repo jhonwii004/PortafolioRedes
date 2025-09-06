@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Binder PDF Gallery</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans text-center p-6">
+
+  <h1 class="text-3xl font-bold mb-8">Portafolio</h1>
+
+  <!-- Binder container -->
+  <div class="binder flex bg-gray-1000 shadow-2xl gap-1 max-w-6xl mx-auto flex-row">
+    <div class="pr-8 bg-gray-300  w-1/5 h-6  rounded-t-lg"></div>
+    <div class="bg-gray-200 w-1/5 h-6 rounded-t-lg pr-8"></div>
+    <div class="bg-gray-200 w-1/5 h-6 rounded-t-lg pr-8"></div>
+    <div class="bg-gray-200 w-1/5 h-6 rounded-t-lg pr-8"></div>
+    <div class="bg-gray-200 w-1/5 h-6 rounded-t-lg pr-8"></div>
+
+    
+  </div>
+
+  <div class="binder bg-gray-300 rounded-b-xl shadow-2xl p-6 max-w-6xl mx-auto">
+    
+    <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+  </div>
+
+  <!-- Modal for expanded PDF --> 
+  <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50">
+    <span id="closeModal" class="absolute top-5 right-8 text-white text-4xl cursor-pointer">&times;</span>
+    <iframe id="modalPDF" class="w-4/5 h-4/5 rounded-lg bg-white" frameborder="0"></iframe>
+  </div>
+
+  <script>
+    const pdfs = [
+      'pdfs/file1.pdf',
+      'pdfs/file1.pdf',
+      'pdfs/file1.pdf',
+      'pdfs/file1.pdf',
+      'pdfs/file1.pdf',
+      'pdfs/file1.pdf',
+    ];
+
+    const gallery = document.getElementById('gallery');
+    const modal = document.getElementById('modal');
+    const modalPDF = document.getElementById('modalPDF');
+    const closeModal = document.getElementById('closeModal');
+
+    pdfs.forEach(pdf => {
+      const card = document.createElement('div');
+      card.className = "bg-white rounded-lg shadow-lg p-2 cursor-pointer hover:scale-105 hover:shadow-2xl transition-transform duration-300";
+
+      // Canvas for first page preview
+      const canvas = document.createElement('canvas');
+      canvas.className = "w-full rounded-md";
+      card.appendChild(canvas);
+
+      // PDF title
+      const title = document.createElement('p');
+      title.className = "mt-2 text-sm font-medium";
+      title.textContent = pdf.split('/').pop();
+      card.appendChild(title);
+
+      gallery.appendChild(card);
+
+      // Render first page using PDF.js
+      pdfjsLib.getDocument(pdf).promise.then(pdfDoc => {
+        pdfDoc.getPage(3).then(page => {
+          const viewport = page.getViewport({ scale: 1.2 });
+          canvas.height = viewport.height;
+          canvas.width = viewport.width;
+          page.render({ canvasContext: canvas.getContext('2d'), viewport });
+        });
+      });
+
+      // Click to open full PDF in modal
+      card.addEventListener('click', () => {
+        modal.classList.remove('hidden');
+        modalPDF.src = pdf;
+      });
+    });
+
+    // Close modal
+    closeModal.onclick = () => modal.classList.add('hidden');
+    window.onclick = e => {
+      if (e.target === modal) modal.classList.add('hidden');
+    };
+  </script>
+</body>
+</html>
