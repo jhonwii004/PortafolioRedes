@@ -1,46 +1,242 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Binder PDF Gallery</title>
+  <title>Portafolio Estudiantil – Segundo Semestre 2025</title>
+
+  <!-- (Opcional) PDF.js, por si luego quieres usar miniaturas -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
+
+  <!-- TailwindCSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
 </head>
-<body class="bg-gray-100 font-sans text-center p-6">
+<body class="bg-gray-100 font-sans text-gray-800">
 
-  <h1 class="text-3xl font-bold mb-8">Portafolio</h1>
+  <!-- HEADER / NAV -->
+  <header class="bg-blue-900 text-white shadow-md sticky top-0 z-40">
+    <div class="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
+      <div>
+        <h1 class="text-xl font-bold leading-tight">Portafolio Estudiantil</h1>
+        <p class="text-xs">Segundo Semestre 2025 – Curso: ____________________</p>
+      </div>
 
-  <!-- Binder container -->
-  <div class="binder flex bg-gray-1000 shadow-2xl gap-1 max-w-6xl mx-auto flex-row">
-    <div class="pr-8 bg-gray-300  w-1/5 h-6  rounded-t-lg"></div>
-    <div class="bg-gray-200 w-1/5 h-6 rounded-t-lg pr-8"></div>
-    <div class="bg-gray-200 w-1/5 h-6 rounded-t-lg pr-8"></div>
-    <div class="bg-gray-200 w-1/5 h-6 rounded-t-lg pr-8"></div>
-    <div class="bg-gray-200 w-1/5 h-6 rounded-t-lg pr-8"></div>
+      <nav class="hidden md:flex space-x-4 text-sm font-medium">
+        <a href="#inicio" class="hover:text-gray-200">Inicio</a>
+        <a href="#actividades" class="hover:text-gray-200">Actividades</a>
+        <a href="#materiales" class="hover:text-gray-200">Materiales</a>
+        <a href="#evidencias" class="hover:text-gray-200">Evidencias</a>
+        <a href="#proyectos" class="hover:text-gray-200">Proyectos</a>
+        <a href="#contacto" class="hover:text-gray-200">Contacto</a>
+        <a href="#acerca" class="hover:text-gray-200">Acerca del sitio</a>
+      </nav>
+    </div>
+  </header>
 
-    
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="max-w-6xl mx-auto px-4 py-10 space-y-16">
+
+    <!-- 1. INICIO -->
+    <section id="inicio" class="bg-white rounded-xl shadow-md p-6">
+      <h2 class="text-2xl font-bold mb-3">Inicio</h2>
+      <p class="text-sm leading-relaxed">
+        Este portafolio digital reúne las principales actividades, materiales,
+        evidencias y proyectos desarrollados durante el segundo semestre 2025.
+        Su propósito es documentar el proceso de aprendizaje, mostrar avances
+        y reflexionar sobre los resultados obtenidos en el curso.
+      </p>
+    </section>
+
+    <!-- 2. ACTIVIDADES DEL SEMESTRE -->
+    <section id="actividades" class="bg-white rounded-xl shadow-md p-6">
+      <h2 class="text-2xl font-bold mb-3">Actividades del semestre</h2>
+      <p class="text-sm mb-4">
+        En esta sección se presentan las actividades realizadas durante el semestre.
+        Cada tarjeta incluye el título, la fecha, una breve descripción y el acceso
+        al archivo en formato PDF.
+      </p>
+
+      <div class="binder bg-gray-200 rounded-xl shadow-inner p-4">
+        <h3 class="text-lg font-semibold mb-4 text-center">
+          Actividades realizadas durante el semestre
+        </h3>
+
+        <!-- Aquí el JS insertará las tarjetas de actividades -->
+        <div id="gallery"
+             class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+        </div>
+
+        <div id="buttons" class="flex justify-center flex-wrap gap-3 mt-4">
+          <button
+            class="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition text-xs">
+            Agregar nuevo PDF
+          </button>
+          <button
+            class="bg-green-600 text-white px-4 py-2 rounded-lg shadow hover:bg-green-700 transition text-xs">
+            Guardar cambios
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. MATERIALES -->
+    <section id="materiales" class="bg-white rounded-xl shadow-md p-6">
+      <h2 class="text-2xl font-bold mb-3">Materiales</h2>
+      <p class="text-sm mb-6">
+        En esta sección se presentan los diferentes recursos utilizados durante el semestre,
+        incluyendo presentaciones, PDFs, enlaces externos y videos.
+      </p>
+
+      <div id="materialesGrid" class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+        <!-- Aquí el JS insertará automáticamente las tarjetas de materiales -->
+      </div>
+    </section>
+
+    <!-- 4. EVIDENCIAS / GALERÍA -->
+    <section id="evidencias" class="bg-white rounded-xl shadow-md p-6">
+      <h2 class="text-2xl font-bold mb-3">Evidencias / Galería</h2>
+      <p class="text-sm mb-4">
+        Aquí se presentan fotos, capturas de pantalla o demostraciones
+        de trabajos y prácticas realizadas a lo largo del semestre.
+      </p>
+
+      <div class="grid gap-4 grid-cols-2 md:grid-cols-3">
+        <div class="bg-gray-200 h-32 rounded-lg flex items-center justify-center text-xs text-gray-500">
+          Evidencia 1 (imagen/captura)
+        </div>
+        <div class="bg-gray-200 h-32 rounded-lg flex items-center justify-center text-xs text-gray-500">
+          Evidencia 2 (imagen/captura)
+        </div>
+        <div class="bg-gray-200 h-32 rounded-lg flex items-center justify-center text-xs text-gray-500">
+          Evidencia 3 (imagen/captura)
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. PROYECTOS DESTACADOS -->
+    <section id="proyectos" class="bg-white rounded-xl shadow-md p-6">
+      <h2 class="text-2xl font-bold mb-3">Proyectos destacados</h2>
+      <p class="text-sm mb-4">
+        Se destacan el proyecto final u otros trabajos importantes
+        realizados durante el semestre.
+      </p>
+
+      <article class="border-l-4 border-blue-600 bg-blue-50 rounded-lg p-4">
+        <h3 class="font-semibold text-sm">Proyecto final: ____________________</h3>
+        <p class="text-xs text-gray-500 mb-1">Fecha de presentación: __ / __ / 2025</p>
+        <p class="text-xs leading-relaxed mb-1">
+          Descripción general del proyecto, problema abordado, objetivos,
+          metodología utilizada y principales resultados.
+        </p>
+        <p class="text-xs leading-relaxed">
+          Se puede incluir un enlace al informe, video de presentación
+          o repositorio del proyecto.
+        </p>
+      </article>
+    </section>
+
+    <!-- 6. CONTACTO / INFORMACIÓN DEL CURSO -->
+    <section id="contacto" class="bg-white rounded-xl shadow-md p-6">
+      <h2 class="text-2xl font-bold mb-3">Contacto / Información del curso</h2>
+
+      <div class="grid md:grid-cols-2 gap-4 text-sm">
+        <div>
+          <h3 class="font-semibold mb-1">Estudiantes</h3>
+          <ul class="list-disc list-inside text-xs space-y-1">
+            <li>Nombre del estudiante 1 – Carrera, Grupo, Sede</li>
+            <li>Nombre del estudiante 2 – Carrera, Grupo, Sede</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-semibold mb-1">Curso</h3>
+          <ul class="list-disc list-inside text-xs space-y-1">
+            <li>Docente: Dra. Y. Castillo</li>
+            <li>Asignatura: ______________________________</li>
+            <li>Grupo: _____________</li>
+            <li>Institución: Universidad Tecnológica de Panamá – Centro Regional _______</li>
+            <li>Semestre: Segundo Semestre 2025</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. DOCUMENTACIÓN: ACERCA DEL SITIO -->
+    <section id="acerca" class="bg-white rounded-xl shadow-md p-6">
+      <h2 class="text-2xl font-bold mb-3">Acerca del sitio</h2>
+      <p class="text-sm leading-relaxed">
+        Este portafolio fue diseñado para organizar el contenido del curso de
+        forma clara y accesible. La navegación se realiza mediante el menú
+        superior, que permite acceder rápidamente a las secciones de Inicio,
+        Actividades, Materiales, Evidencias, Proyectos, Contacto y esta
+        documentación. La estructura está pensada para integrar todas las
+        actividades desarrolladas durante el semestre y facilitar la evaluación
+        de la organización del contenido, el diseño, la estética y la
+        presentación de evidencias de aprendizaje.
+      </p>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-900 text-gray-300 text-xs py-4">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-2">
+      <span>Portafolio Estudiantil – Segundo Semestre 2025</span>
+      <span>Elaborado por: __________________________</span>
+    </div>
+  </footer>
+
+  <!-- MODAL PARA PDF COMPLETO (ACTIVIDADES) -->
+  <div id="modal"
+       class="hidden fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50">
+    <span id="closeModal"
+          class="absolute top-5 right-8 text-white text-4xl cursor-pointer">&times;</span>
+    <iframe id="modalPDF"
+            class="w-11/12 md:w-4/5 h-4/5 rounded-lg bg-white"
+            frameborder="0"></iframe>
   </div>
 
-  <div class="binder bg-gray-300 rounded-b-xl shadow-2xl p-6 max-w-6xl mx-auto">
-    
-    <div id="gallery" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
-  </div>
-
-  <!-- Modal for expanded PDF --> 
-  <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50">
-    <span id="closeModal" class="absolute top-5 right-8 text-white text-4xl cursor-pointer">&times;</span>
-    <iframe id="modalPDF" class="w-4/5 h-4/5 rounded-lg bg-white" frameborder="0"></iframe>
-  </div>
-
+  <!-- JS UNIFICADO: ACTIVIDADES + MATERIALES -->
   <script>
-    const pdfs = [
-      'pdfs/file1.pdf',
-      'pdfs/file1.pdf',
-      'pdfs/file1.pdf',
-      'pdfs/file1.pdf',
-      'pdfs/file1.pdf',
-      'pdfs/file1.pdf',
+    /* ===========================
+       ACTIVIDADES (PDF con modal)
+       =========================== */
+    const actividades = [
+      {
+        archivo: 'pdfs/Laboratorio1.pdf',
+        titulo: 'Laboratorio 1: ____________________',
+        fecha: 'Fecha: __ / __ / 2025',
+        descripcion: 'Breve descripción de la actividad realizada en este laboratorio.'
+      },
+      {
+        archivo: 'pdfs/Laboratorio2.pdf',
+        titulo: 'Laboratorio 2: ____________________',
+        fecha: 'Fecha: __ / __ / 2025',
+        descripcion: 'Breve descripción de los objetivos y resultados del laboratorio.'
+      },
+      {
+        archivo: 'pdfs/file3.pdf',
+        titulo: 'Actividad 3: ____________________',
+        fecha: 'Fecha: __ / __ / 2025',
+        descripcion: 'Descripción corta de la actividad 3.'
+      },
+      {
+        archivo: 'pdfs/Laboratorio4.pdf',
+        titulo: 'Laboratorio 4: ____________________',
+        fecha: 'Fecha: __ / __ / 2025',
+        descripcion: 'Descripción corta de lo trabajado en el laboratorio 4.'
+      },
+      {
+        archivo: 'pdfs/Laboratorio5.pdf',
+        titulo: 'Laboratorio 5: ____________________',
+        fecha: 'Fecha: __ / __ / 2025',
+        descripcion: 'Descripción corta de la última actividad o laboratorio.'
+      }
     ];
 
     const gallery = document.getElementById('gallery');
@@ -48,45 +244,200 @@
     const modalPDF = document.getElementById('modalPDF');
     const closeModal = document.getElementById('closeModal');
 
-    pdfs.forEach(pdf => {
+    actividades.forEach(act => {
       const card = document.createElement('div');
-      card.className = "bg-white rounded-lg shadow-lg p-2 cursor-pointer hover:scale-105 hover:shadow-2xl transition-transform duration-300";
+      card.className =
+        "flex items-start p-4 rounded-lg bg-white hover:bg-gray-100 shadow cursor-pointer transition";
 
-      // Canvas for first page preview
-      const canvas = document.createElement('canvas');
-      canvas.className = "w-full rounded-md";
-      card.appendChild(canvas);
+      // Icono tipo PDF
+      const icon = document.createElement('div');
+      icon.className =
+        "flex-shrink-0 w-10 h-10 mr-3 rounded-lg bg-red-100 flex items-center justify-center text-xs font-bold text-red-700";
+      icon.textContent = "PDF";
+      card.appendChild(icon);
 
-      // PDF title
-      const title = document.createElement('p');
-      title.className = "mt-2 text-sm font-medium";
-      title.textContent = pdf.split('/').pop();
-      card.appendChild(title);
+      // Contenedor de texto
+      const textBox = document.createElement('div');
 
+      const titulo = document.createElement('p');
+      titulo.className = "text-sm font-semibold";
+      titulo.textContent = act.titulo;
+      textBox.appendChild(titulo);
+
+      const fecha = document.createElement('p');
+      fecha.className = "text-[0.7rem] text-gray-500";
+      fecha.textContent = act.fecha;
+      textBox.appendChild(fecha);
+
+      const desc = document.createElement('p');
+      desc.className = "mt-1 text-[0.7rem] leading-snug text-gray-700";
+      desc.textContent = act.descripcion;
+      textBox.appendChild(desc);
+
+      card.appendChild(textBox);
       gallery.appendChild(card);
 
-      // Render first page using PDF.js
-      pdfjsLib.getDocument(pdf).promise.then(pdfDoc => {
-        pdfDoc.getPage(3).then(page => {
-          const viewport = page.getViewport({ scale: 1.2 });
-          canvas.height = viewport.height;
-          canvas.width = viewport.width;
-          page.render({ canvasContext: canvas.getContext('2d'), viewport });
-        });
-      });
-
-      // Click to open full PDF in modal
+      // Al hacer clic en la tarjeta, se abre el PDF en el modal
       card.addEventListener('click', () => {
         modal.classList.remove('hidden');
-        modalPDF.src = pdf;
+        modalPDF.src = act.archivo;
       });
     });
 
-    // Close modal
+    // Cerrar modal
     closeModal.onclick = () => modal.classList.add('hidden');
     window.onclick = e => {
       if (e.target === modal) modal.classList.add('hidden');
     };
-  </script>
+
+    /* ===========================
+       MATERIALES (links y archivos)
+       =========================== */
+
+  const materiales = [
+    {
+      tipo: "word",
+      titulo: "Lab2 Armado de cables",
+      descripcion: "Archivo Word",
+      url: "materiales/Lab2 Armado de cables.docx",
+      icono: "https://cdn-icons-png.flaticon.com/512/732/732220.png"
+    },
+    {
+      tipo: "pdf",
+      titulo: "Módulo I – Infraestructura de red",
+      descripcion: "Archivo PDF",
+      url: "materiales/Modulo I_Infrestructura de red.pdf",
+      icono: "https://cdn-icons-png.flaticon.com/512/337/337946.png"
+    },
+    {
+      tipo: "pdf",
+      titulo: "Módulo I – Cisco Packet Tracer",
+      descripcion: "Archivo PDF",
+      url: "materiales/Modulo I CISCO PACKET TRACER.pdf",
+      icono: "https://cdn-icons-png.flaticon.com/512/337/337946.png"
+    },
+    {
+      tipo: "pdf",
+      titulo: "Módulo I – Proveedores de cables RI",
+      descripcion: "Archivo PDF",
+      url: "materiales/Módulo1 PROVEEDORES DE CABLES RI.pdf",
+      icono: "https://cdn-icons-png.flaticon.com/512/337/337946.png"
+    },
+    {
+      tipo: "pdf",
+      titulo: "Módulo I – Redes Informáticas",
+      descripcion: "Archivo PDF",
+      url: "materiales/Módulo1 REDES INFORMATICAS.pdf",
+      icono: "https://cdn-icons-png.flaticon.com/512/337/337946.png"
+    },
+    {
+      tipo: "pdf",
+      titulo: "Módulo II – Direcciones IP",
+      descripcion: "Archivo PDF",
+      url: "materiales/MODULO II_Direcciones IP.pdf",
+      icono: "https://cdn-icons-png.flaticon.com/512/337/337946.png"
+    },
+    {
+      tipo: "pdf",
+      titulo: "Módulo II – Protocolos y Modelos de Comunicación",
+      descripcion: "Archivo PDF",
+      url: "materiales/MODULO II--PROTOCOLOS Y MODELOS DE COMUNICACION.pdf",
+      icono: "https://cdn-icons-png.flaticon.com/512/337/337946.png"
+    },
+    {
+      tipo: "pdf",
+      titulo: "Módulo 3 – VPN",
+      descripcion: "Archivo PDF",
+      url: "materiales/modulo 3 VPN.pdf",
+      icono: "https://cdn-icons-png.flaticon.com/512/337/337946.png"
+    },
+    {
+      tipo: "pdf",
+      titulo: "Módulo III – Segmentación de red",
+      descripcion: "Archivo PDF",
+      url: "materiales/MODULO III_SEGMENTACION DE RED.pdf",
+      icono: "https://cdn-icons-png.flaticon.com/512/337/337946.png"
+    },
+    {
+      tipo: "pdf",
+      titulo: "0761 Redes Informáticas",
+      descripcion: "Archivo PDF",
+      url: "materiales/0761 Redes Informaticas.pdf",
+      icono: "https://cdn-icons-png.flaticon.com/512/337/337946.png"
+    },
+    {
+      tipo: "word",
+      titulo: "Agenda",
+      descripcion: "Archivo Word",
+      url: "materiales/AGENDA.docx",
+      icono: "https://cdn-icons-png.flaticon.com/512/732/732220.png"
+    },
+    {
+      tipo: "word",
+      titulo: "Grupos de Trabajo – Redes 2025",
+      descripcion: "Archivo Word",
+      url: "materiales/Grupos_Trabajo_REDES_2025.docx",
+      icono: "https://cdn-icons-png.flaticon.com/512/732/732220.png"
+    },
+    {
+      tipo: "pdf",
+      titulo: "Calendario Académico UTP 2025–2026",
+      descripcion: "Archivo PDF",
+      url: "materiales/utp-calendario-academico-2025-2026-actualizado.pdf",
+      icono: "https://cdn-icons-png.flaticon.com/512/337/337946.png"
+    },
+    {
+      tipo: "zip",
+      titulo: "General.zip",
+      descripcion: "Archivo ZIP",
+      url: "materiales/General.zip",
+      icono: "https://cdn-icons-png.flaticon.com/512/716/716784.png"
+    }
+  ];
+
+  const materialesGrid = document.getElementById("materialesGrid");
+
+  materiales.forEach(mat => {
+    // Tarjeta tipo actividades (div clickable, no <a>)
+    const card = document.createElement("div");
+    card.className =
+      "flex items-center p-4 rounded-lg bg-gray-100 hover:bg-gray-200 shadow transition cursor-pointer";
+
+    // Ícono
+    const icon = document.createElement("img");
+    icon.src = mat.icono;
+    icon.className = "w-10 h-10 mr-3";
+    icon.alt = mat.tipo.toUpperCase();
+    card.appendChild(icon);
+
+    // Texto
+    const textBox = document.createElement("div");
+
+    const title = document.createElement("p");
+    title.className = "font-semibold text-sm";
+    title.textContent = mat.titulo;
+    textBox.appendChild(title);
+
+    const desc = document.createElement("p");
+    desc.className = "text-xs text-gray-500";
+    desc.textContent = mat.descripcion;
+    textBox.appendChild(desc);
+
+    card.appendChild(textBox);
+    materialesGrid.appendChild(card);
+
+    // 👉 Comportamiento al hacer clic
+    card.addEventListener("click", () => {
+      if (mat.tipo === "pdf") {
+        // Igual que actividades: abre en el modal
+        modal.classList.remove("hidden");
+        modalPDF.src = mat.url;
+      } else {
+        // Otros tipos: abre en una nueva pestaña
+        window.open(mat.url, "_blank");
+      }
+    });
+  });
+</script>
 </body>
 </html>
