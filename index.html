@@ -5,10 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portafolio Estudiantil – Segundo Semestre 2025</title>
 
-  <!-- (Opcional) PDF.js, por si luego quieres usar miniaturas -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
 
-  <!-- TailwindCSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
@@ -19,8 +17,7 @@
 </head>
 <body class="bg-gray-100 font-sans text-gray-800">
 
-  <!-- HEADER / NAV -->
-  <header class="bg-blue-900 text-white shadow-md sticky top-0 z-40">
+  <header class="bg-gray-900 text-white shadow-md sticky top-0 z-40">
     <div class="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
       <div>
         <h1 class="text-xl font-bold leading-tight">Portafolio Estudiantil</h1>
@@ -31,15 +28,13 @@
         <a href="#inicio" class="hover:text-gray-200">Inicio</a>
         <a href="#actividades" class="hover:text-gray-200">Actividades</a>
         <a href="#materiales" class="hover:text-gray-200">Materiales</a>
-        <a href="#evidencias" class="hover:text-gray-200">Evidencias</a>
-        <a href="#proyectos" class="hover:text-gray-200">Proyectos</a>
+        <a href="#evidencias" class="hover:text-gray-200">Evidencias</a>  
         <a href="#contacto" class="hover:text-gray-200">Contacto</a>
         <a href="#acerca" class="hover:text-gray-200">Acerca del sitio</a>
       </nav>
     </div>
   </header>
 
-  <!-- CONTENIDO PRINCIPAL -->
   <main class="max-w-6xl mx-auto px-4 py-10 space-y-16">
 
     <!-- 1. INICIO -->
@@ -65,9 +60,10 @@
       <div class="binder bg-gray-200 rounded-xl shadow-inner p-4">
 
 
-        <!-- Aquí el JS insertará las tarjetas de actividades -->
         <div id="gallery"
              class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+                       <!--tarjetas de materiales -->
+
         </div>
       </div>
     </section>
@@ -81,7 +77,7 @@
       </p>
       <div class="binder bg-gray-200 rounded-xl shadow-inner p-4">
         <div id="materialesGrid" class="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-          <!-- Aquí el JS insertará automáticamente las tarjetas de materiales -->
+          <!--tarjetas de materiales -->
         </div>
       </div>
     </section>
@@ -153,10 +149,11 @@
         forma clara y accesible. La navegación se realiza mediante el menú
         superior, que permite acceder rápidamente a las secciones de Inicio,
         Actividades, Materiales, Evidencias, Proyectos, Contacto y esta
-        documentación. La estructura está pensada para integrar todas las
-        actividades desarrolladas durante el semestre y facilitar la evaluación
-        de la organización del contenido, el diseño, la estética y la
-        presentación de evidencias de aprendizaje.
+        documentación. Se desarrolló la funcionalidad para mostrar los pdf sin
+        redireccionamiento para una interaccion con el portafolio
+        más fluida. La estructura está pensada para integrar todas las
+        actividades desarrolladas durante el semestre, los modulos de estudio y
+        las evidencias recopiladas(Incluyendo el viaje a Panamá).
       </p>
     </section>
   </main>
@@ -224,6 +221,18 @@
         titulo: 'Proyecto 1',
         fecha: 'Fecha: 19 / 10 / 2025',
         descripcion: 'Diagrama de conexion de red'
+      },
+      {
+        archivo: 'parciales/NotasParcial1.pdf',
+        titulo: 'Parcial 1 ',
+        fecha: 'Fecha: 25 / 9 / 2025',
+        descripcion: 'Notas del primer parcial'
+      },
+      {
+        archivo: 'parciales/NotasParcial2.pdf',
+        titulo: 'Parcial 2 ',
+        fecha: 'Fecha: 16 / 10 / 2025',
+        descripcion: 'Notas del segundo parcial'
       }
     ];
 
@@ -235,7 +244,7 @@
     actividades.forEach(act => {
       const card = document.createElement('div');
       card.className =
-        "flex items-start p-4 rounded-lg bg-white hover:bg-gray-100 shadow cursor-pointer transition";
+        "flex items-start p-4 rounded-lg bg-white   hover:bg-gray-100 shadow cursor-pointer transition";
 
       // Icono tipo PDF
       const icon = document.createElement('img');
@@ -363,7 +372,7 @@
   const materialesGrid = document.getElementById("materialesGrid");
 
   materiales.forEach(mat => {
-    // Tarjeta tipo actividades (div clickable, no <a>)
+    
     const card = document.createElement("div");
     card.className =
       "flex items-center p-4 rounded-lg  bg-white  hover:bg-gray-200 shadow transition cursor-pointer";
@@ -394,11 +403,11 @@
     // 👉 Comportamiento al hacer clic
     card.addEventListener("click", () => {
       if (mat.tipo === "pdf") {
-        // Igual que actividades: abre en el modal
+        
         modal.classList.remove("hidden");
         modalPDF.src = mat.url;
       } else {
-        // Otros tipos: abre en una nueva pestaña
+       
         window.open(mat.url, "_blank");
       }
     });
